@@ -1,5 +1,15 @@
 <template>
   <div class="app-container">
+    <div class="filter-container">
+      <el-input v-model="listQuery.room_number" placeholder="Room" style="width: 130px;" class="filter-item mr-1" @keyup.enter.native="handleFilter" />
+      <el-select v-model="listQuery.merchant_id" placeholder="Merchant" clearable class="filter-item mr-1" style="width: 130px">
+        <el-option v-for="(item, index) in merchants" :key="index" :label="item.username" :value="item.id" />
+      </el-select>
+      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
+        Search
+      </el-button>
+    </div>
+
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -67,6 +77,7 @@
 
 <script>
 import { getOrders } from '@/api/order'
+import { getMerchants } from '@/api/merchant'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 export default {
   name: 'OrdersIndex',
@@ -92,10 +103,12 @@ export default {
   data() {
     return {
       total: 0,
+      merchants: [],
       listQuery: {
         page: 1,
         limit: 10,
-        name: undefined
+        merchant_id: undefined,
+        room_number: undefined
       },
       list: null,
       listLoading: true
@@ -103,6 +116,7 @@ export default {
   },
   created() {
     this.fetchData()
+    this.fetchMerchants()
   },
   methods: {
     fetchData() {
@@ -113,9 +127,24 @@ export default {
         this.listLoading = false
       })
     },
-    newsEdit(id) {
-      this.$router.push('/hktinon/edit/' + id)
+    fetchMerchants() {
+      getMerchants(this.listQuery).then(response => {
+        this.merchants = response.data.data
+      })
+    },
+    handleFilter() {
+      this.listQuery.page = 1
+      this.fetchData()
     }
   }
 }
 </script>
+
+<style>
+.mr-1 {
+  margin-right: 1rem;
+}
+.filter-container {
+  margin-bottom: 1rem;
+}
+</style>

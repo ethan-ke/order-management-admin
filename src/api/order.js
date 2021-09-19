@@ -7,8 +7,8 @@ export function getOrders(query) {
     method: 'get',
     params: {
       filter: {
-        title: query.title,
-        status: query.status
+        merchant_id: query.merchant_id,
+        room_number: query.room_number
       },
       page: query.page,
       limit: query.limit

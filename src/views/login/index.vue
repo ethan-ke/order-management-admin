@@ -53,8 +53,8 @@ export default {
   data() {
     return {
       loginForm: {
-        username: 'wuli',
-        password: 'FL-218-520'
+        username: '',
+        password: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur' }],
