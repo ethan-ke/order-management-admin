@@ -106,7 +106,7 @@ export default {
       merchants: [],
       listQuery: {
         page: 1,
-        limit: 10,
+        limit: 20,
         merchant_id: undefined,
         room_number: undefined
       },
