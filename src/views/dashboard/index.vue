@@ -14,6 +14,8 @@
         <el-table-column prop="today_income" label="Today income" width="180" />
         <el-table-column prop="monthly_income" label="Monthly income" width="180" />
         <el-table-column prop="total_amount" label="Total amount of the month" width="220" />
+        <el-table-column prop="last_month_income" label="Last month's income" width="200" />
+        <el-table-column prop="last_month_total_amount" label="Last month's total amount" width="240" />
       </el-table>
     </div>
   </div>
