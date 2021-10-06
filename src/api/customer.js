@@ -18,3 +18,24 @@ export function fetchCustomers(query) {
     }
   })
 }
+export function bulkUpdateItem(data) {
+  return request({
+    url: '/customers/items/bulk-update',
+    method: 'patch',
+    data
+  })
+}
+export function updateCustomer(id, data) {
+  return request({
+    url: '/customers/' + id,
+    method: 'put',
+    data
+  })
+}
+export function createCustomer(data) {
+  return request({
+    url: '/customers',
+    method: 'post',
+    data
+  })
+}
