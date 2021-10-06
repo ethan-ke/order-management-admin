@@ -82,6 +82,21 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/customers',
+    component: Layout,
+    name: 'Customer',
+    redirect: '/customers/index',
+    meta: { title: 'Customer Management', icon: 'el-icon-s-order' },
+    children: [
+      {
+        path: 'index',
+        name: 'CustomerIndex',
+        component: () => import('@/views/customers/index'),
+        meta: { title: 'Customers', icon: 'el-icon-s-custom' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
