@@ -148,6 +148,13 @@ export default {
       }
     }
   },
+  watch: {
+    'customerForm.phone': {
+      handler: function(val) {
+        this.customerForm.phone = val.replace(/\s*/g, '')
+      }
+    }
+  },
   created() {
     this.fetchData()
   },
