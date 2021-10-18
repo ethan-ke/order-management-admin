@@ -18,3 +18,16 @@ export function getOrders(query) {
     }
   })
 }
+export function getOrder(id) {
+  return request({
+    url: '/orders/' + id,
+    method: 'get'
+  })
+}
+export function updateOrder(id, data) {
+  return request({
+    url: '/orders/' + id,
+    method: 'patch',
+    data
+  })
+}

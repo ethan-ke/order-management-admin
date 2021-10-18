@@ -28,27 +28,27 @@
           {{ row.phone }}
         </template>
       </el-table-column>
-      <el-table-column label="Price" align="center">
+      <el-table-column label="Price" width="130" align="center">
         <template slot-scope="{ row }">
           {{ row.price }}
         </template>
       </el-table-column>
-      <el-table-column label="Room" align="center">
+      <el-table-column label="Room" width="130" align="center">
         <template slot-scope="{ row }">
           {{ row.room_number }}
         </template>
       </el-table-column>
-      <el-table-column label="Merchant name" align="center">
+      <el-table-column label="Merchant name" width="130" align="center">
         <template slot-scope="{ row }">
           {{ row.merchant_name }}
         </template>
       </el-table-column>
-      <el-table-column label="Commission" align="center">
+      <el-table-column label="Commission" width="130" align="center">
         <template slot-scope="{ row }">
           {{ row.commission }}
         </template>
       </el-table-column>
-      <el-table-column label="Commission rate" align="center">
+      <el-table-column label="Commission rate" width="140" align="center">
         <template slot-scope="{ row }">
           {{ row.commission_rate }}
         </template>
@@ -70,13 +70,44 @@
           <span>{{ row.updated_at }}</span>
         </template>
       </el-table-column>
+      <el-table-column align="center" label="Operation" width="140">
+        <template slot-scope="{row}">
+          <el-button plain size="mini" @click="orderEdit(row)">
+            Edit
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />\
+    <el-dialog title="Order info" width="30%" :visible.sync="dialogFormVisible">
+      <el-form ref="postForm" :rules="rules" :model="postForm" label-position="right" label-width="140px" style="width: 80%;">
+        <el-form-item label="Phone" prop="phone">
+          <el-input v-model="postForm.phone" />
+        </el-form-item>
+        <el-form-item label="Price" prop="price">
+          <el-input v-model="postForm.price" />
+        </el-form-item>
+        <el-form-item label="Status">
+          <el-select v-model="postForm.status" placeholder="Select status">
+            <el-option
+              v-for="(item) in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="onSubmit()">Confirm</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import { getOrders } from '@/api/order'
+import { getOrders, getOrder, updateOrder } from '@/api/order'
 import { getMerchants } from '@/api/merchant'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 export default {
@@ -110,8 +141,41 @@ export default {
         merchant_id: undefined,
         room_number: undefined
       },
+      dialogFormVisible: false,
+      options: [
+        {
+          value: 1,
+          label: 'Initial'
+        },
+        {
+          value: 2,
+          label: 'Canceled'
+        },
+        {
+          value: 3,
+          label: 'Finished'
+        }
+      ],
+      value: '',
+      rules: {
+        phone: [{ required: true, trigger: 'blur' }],
+        price: [{ required: true, trigger: 'blur' }],
+      },
+      postForm: {
+        id: '',
+        phone: '',
+        price: '',
+        status: 0
+      },
       list: null,
       listLoading: true
+    }
+  },
+  watch: {
+    'postForm.phone': {
+      handler: function(val) {
+        this.postForm.phone = val.replace(/\s*/g, '')
+      }
     }
   },
   created() {
@@ -132,9 +196,23 @@ export default {
         this.merchants = response.data.data
       })
     },
+    orderEdit(row) {
+      getOrder(row.id).then(response => {
+        this.postForm = response.data
+        this.listLoading = false
+      })
+      this.dialogFormVisible = true
+    },
     handleFilter() {
       this.listQuery.page = 1
       this.fetchData()
+    },
+    onSubmit() {
+      updateOrder(this.postForm.id, this.postForm).then(() => {
+        this.$message.success('Success')
+        this.fetchData()
+        this.dialogFormVisible = false
+      })
     }
   }
 }
