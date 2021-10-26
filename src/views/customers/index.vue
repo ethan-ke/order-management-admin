@@ -163,7 +163,7 @@ export default {
       this.listLoading = true
       fetchCustomers(this.listQuery).then(response => {
         this.list = response.data.data
-        this.total = response.data.total
+        this.total = response.data.meta.total
         this.listLoading = false
       })
     },
