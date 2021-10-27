@@ -68,6 +68,20 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/query-logs',
+    component: Layout,
+    name: 'QueryLogs',
+    meta: { title: 'Query Logs', icon: 'el-icon-s-order' },
+    children: [
+      {
+        path: 'index',
+        name: 'QueryLogsIndex',
+        component: () => import('@/views/queryLogs/index'),
+        meta: { title: 'Query Logs', icon: 'el-icon-search' }
+      }
+    ]
+  },
+  {
     path: '/merchants',
     component: Layout,
     name: 'Merchant',
