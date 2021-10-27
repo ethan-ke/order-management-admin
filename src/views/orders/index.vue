@@ -2,6 +2,7 @@
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.room_number" placeholder="Room" style="width: 130px;" class="filter-item mr-1" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.phone" placeholder="Phone" style="width: 230px;" class="filter-item mr-1" @keyup.enter.native="handleFilter" />
       <el-select v-model="listQuery.merchant_id" placeholder="Merchant" clearable class="filter-item mr-1" style="width: 130px">
         <el-option v-for="(item, index) in merchants" :key="index" :label="item.username" :value="item.id" />
       </el-select>
@@ -33,7 +34,7 @@
           {{ row.price }}
         </template>
       </el-table-column>
-      <el-table-column label="Room" width="130" align="center">
+      <el-table-column label="Room" width="200" align="center">
         <template slot-scope="{ row }">
           {{ row.room_number }}
         </template>
@@ -139,6 +140,7 @@ export default {
         page: 1,
         limit: 20,
         merchant_id: undefined,
+        phone: undefined,
         room_number: undefined
       },
       dialogFormVisible: false,

@@ -8,6 +8,7 @@ export function getOrders(query) {
     params: {
       filter: {
         merchant_id: query.merchant_id,
+        phone: query.phone,
         room_number: query.room_number
       },
       page: query.page,
