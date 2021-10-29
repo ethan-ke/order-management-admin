@@ -71,7 +71,7 @@
           <span>{{ row.updated_at }}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="Operation" width="140">
+      <el-table-column v-if="this.$store.state.user.username === 'ethan'" align="center" label="Operation" width="140">
         <template slot-scope="{row}">
           <el-button plain size="mini" @click="orderEdit(row)">
             Edit
@@ -79,7 +79,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />\
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />
     <el-dialog title="Order info" width="30%" :visible.sync="dialogFormVisible">
       <el-form ref="postForm" :rules="rules" :model="postForm" label-position="right" label-width="140px" style="width: 80%;">
         <el-form-item label="Phone" prop="phone">
@@ -181,6 +181,7 @@ export default {
     }
   },
   created() {
+    console.log(this.$store.state)
     this.fetchData()
     this.fetchMerchants()
   },
