@@ -18,6 +18,12 @@ export function fetchCustomers(query) {
     }
   })
 }
+export function fetchCustomer(id) {
+  return request({
+    url: '/customers/' + id,
+    method: 'get'
+  })
+}
 export function bulkUpdateItem(data) {
   return request({
     url: '/customers/items/bulk-update',

@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import { fetchCustomers, bulkUpdateItem, updateCustomer, createCustomer } from '@/api/customer'
+import { fetchCustomers, fetchCustomer, bulkUpdateItem, updateCustomer, createCustomer } from '@/api/customer'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 const defaultCustomerForm = {
   id: undefined,
@@ -170,6 +170,9 @@ export default {
     handleCustomerForm(row, index) {
       if (index !== undefined) {
         this.customerForm = row
+        fetchCustomer(row.id).then(res => {
+          this.customerForm = res.data
+        })
       } else {
         this.customerForm = defaultCustomerForm
       }
