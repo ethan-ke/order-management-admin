@@ -18,7 +18,7 @@
       stripe
       highlight-current-row
     >
-      <el-table-column label="ID" width="50" align="center">
+      <el-table-column label="ID" width="150" align="center">
         <template slot-scope="{ row }">
           {{ row.id }}
         </template>

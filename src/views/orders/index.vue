@@ -19,7 +19,7 @@
       fit
       highlight-current-row
     >
-      <el-table-column label="ID" width="50" align="center">
+      <el-table-column label="ID" width="100" align="center">
         <template slot-scope="{ row }">
           {{ row.id }}
         </template>
@@ -71,7 +71,7 @@
           <span>{{ row.updated_at }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-if="this.$store.state.user.username === 'ethan'" align="center" label="Operation" width="140">
+      <el-table-column v-if="this.$store.state.user.username === 'ethan'" align="center" label="Operation" width="100">
         <template slot-scope="{row}">
           <el-button plain size="mini" @click="orderEdit(row)">
             Edit
