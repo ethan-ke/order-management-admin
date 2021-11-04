@@ -43,6 +43,11 @@
           {{ row.name }}
         </template>
       </el-table-column>
+      <el-table-column label="Creator" align="center" width="140">
+        <template slot-scope="{ row }">
+          {{ row.admin_name }}
+        </template>
+      </el-table-column>
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
         <template slot-scope="{row}">
           <el-tag :type="row.status | statusType">
