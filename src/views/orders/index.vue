@@ -71,7 +71,7 @@
           <span>{{ row.updated_at }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-if="this.$store.state.user.username === 'ethan'" align="center" label="Operation" width="100">
+      <el-table-column v-if="this.$store.state.user.username === 'ethan' || this.$store.state.user.username === 'tian6688666'" align="center" label="Operation" width="100">
         <template slot-scope="{row}">
           <el-button plain size="mini" @click="orderEdit(row)">
             Edit
