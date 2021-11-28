@@ -34,16 +34,6 @@
           {{ row.price }}
         </template>
       </el-table-column>
-      <el-table-column label="Room" width="200" align="center">
-        <template slot-scope="{ row }">
-          {{ row.room_number }}
-        </template>
-      </el-table-column>
-      <el-table-column label="Merchant name" width="130" align="center">
-        <template slot-scope="{ row }">
-          {{ row.merchant_name }}
-        </template>
-      </el-table-column>
       <el-table-column label="Commission" width="130" align="center">
         <template slot-scope="{ row }">
           {{ row.commission }}
@@ -52,6 +42,21 @@
       <el-table-column label="Commission rate" width="140" align="center">
         <template slot-scope="{ row }">
           {{ row.commission_rate }}
+        </template>
+      </el-table-column>
+      <el-table-column label="Deduction" width="140" align="center">
+        <template slot-scope="{ row }">
+          {{ row.deduction }}
+        </template>
+      </el-table-column>
+      <el-table-column label="Room" width="200" align="center">
+        <template slot-scope="{ row }">
+          {{ row.room_number }}
+        </template>
+      </el-table-column>
+      <el-table-column label="Merchant name" width="130" align="center">
+        <template slot-scope="{ row }">
+          {{ row.merchant_name }}
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
@@ -86,7 +91,10 @@
           <el-input v-model="postForm.phone" />
         </el-form-item>
         <el-form-item label="Price" prop="price">
-          <el-input v-model="postForm.price" />
+          <el-input v-model="postForm.price" type="number" />
+        </el-form-item>
+        <el-form-item label="Deduction">
+          <el-input v-model="postForm.deduction" type="number" />
         </el-form-item>
         <el-form-item label="Status">
           <el-select v-model="postForm.status" placeholder="Select status">
@@ -167,6 +175,7 @@ export default {
         id: '',
         phone: '',
         price: '',
+        deduction: null,
         status: 0
       },
       list: null,
