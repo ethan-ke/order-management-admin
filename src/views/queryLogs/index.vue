@@ -77,7 +77,7 @@ export default {
       })
     },
     fetchMerchants() {
-      getMerchants(this.listQuery).then(response => {
+      getMerchants().then(response => {
         this.merchants = response.data.data
       })
     },

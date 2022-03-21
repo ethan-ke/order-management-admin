@@ -7,12 +7,12 @@
         style="width: 100%"
       >
         <el-table-column prop="name" label="Merchant name" width="180" align="center" />
-        <el-table-column prop="today_income" label="Today income" width="180" align="right" />
-        <el-table-column prop="monthly_income" label="Monthly income" width="180" align="right" />
+        <el-table-column prop="today_income" label="Today's salary" width="180" align="right" />
+        <el-table-column prop="monthly_income" label="Monthly salary" width="180" align="right" />
         <el-table-column prop="total_deductions" label="Total deductions" width="180" align="right" />
         <el-table-column prop="actual_salary" label="Actual salary" width="180" align="right" />
         <el-table-column prop="total_amount" label="Total amount of the month" width="220" align="right" />
-        <el-table-column prop="last_month_income" label="Last month's income" width="200" align="right" />
+        <el-table-column prop="last_month_income" label="Last month's salary" width="200" align="right" />
         <el-table-column prop="total_deductions_last_month" label="Total deductions last month" width="240" align="right" />
         <el-table-column prop="last_month_total_amount" label="Last month's total amount" width="240" align="right" />
         <el-table-column prop="actual_salary_last_month" label="Actual salary last month" width="240" align="right" />

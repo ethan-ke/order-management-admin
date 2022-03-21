@@ -24,12 +24,12 @@
           {{ row.id }}
         </template>
       </el-table-column>
-      <el-table-column label="Customer Phone" align="center">
+      <el-table-column label="Customer Phone" min-width="140" align="center">
         <template slot-scope="{ row }">
           {{ row.phone }}
         </template>
       </el-table-column>
-      <el-table-column label="Price" width="130" align="center">
+      <el-table-column label="Price" width="110" align="center">
         <template slot-scope="{ row }">
           {{ row.price }}
         </template>
@@ -49,7 +49,7 @@
           {{ row.deduction }}
         </template>
       </el-table-column>
-      <el-table-column label="Room" width="200" align="center">
+      <el-table-column label="Room" min-width="150" align="center">
         <template slot-scope="{ row }">
           {{ row.room_number }}
         </template>
@@ -204,7 +204,7 @@ export default {
       })
     },
     fetchMerchants() {
-      getMerchants(this.listQuery).then(response => {
+      getMerchants().then(response => {
         this.merchants = response.data.data
       })
     },

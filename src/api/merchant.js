@@ -1,17 +1,10 @@
 import request from '@/utils/request'
 import qs from 'qs'
 
-export function getMerchants(query) {
+export function getMerchants() {
   return request({
     url: 'merchants',
-    method: 'get',
-    params: {
-      page: query.page,
-      limit: query.limit
-    },
-    paramsSerializer: params => {
-      return qs.stringify(params, { indices: true })
-    }
+    method: 'get'
   })
 }
 export function getMerchant(id) {
