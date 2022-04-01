@@ -6,7 +6,7 @@
         stripe
         style="width: 100%"
       >
-        <el-table-column prop="name" label="Merchant name" width="180" align="center" />
+        <el-table-column fixed prop="name" label="Merchant name" width="180" align="center" />
         <el-table-column prop="today_income" label="Today's salary" width="180" align="right" />
         <el-table-column prop="monthly_income" label="Monthly salary" width="180" align="right" />
         <el-table-column prop="total_deductions" label="Total deductions" width="180" align="right" />
