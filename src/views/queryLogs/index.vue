@@ -28,6 +28,11 @@
           {{ row.phone }}
         </template>
       </el-table-column>
+      <el-table-column label="Customer info" width="190" align="center">
+        <template slot-scope="{ row }">
+          {{ row.customer ? row.customer.name : null }}
+        </template>
+      </el-table-column>
       <el-table-column label="Merchant name" width="130" align="center">
         <template slot-scope="{ row }">
           {{ row.merchant.username }}
