@@ -8,8 +8,8 @@
       >
         <el-table-column fixed prop="name" label="Merchant name" width="180" align="center" />
         <el-table-column prop="today_income" label="Today's salary" width="180" align="right" />
-        <el-table-column prop="actual_salary" label="Actual salary" width="180" align="right" />
         <el-table-column prop="total_amount" label="Total amount of the month" width="220" align="right" />
+        <el-table-column prop="actual_salary" label="Actual salary" width="180" align="right" />
         <el-table-column prop="last_month_total_amount" label="Last month's total amount" width="240" align="right" />
         <el-table-column prop="actual_salary_last_month" label="Actual salary last month" width="240" align="right" />
       </el-table>
