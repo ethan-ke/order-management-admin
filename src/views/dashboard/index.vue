@@ -4,6 +4,7 @@
       <el-table
         :data="statistics"
         stripe
+        show-summary
         style="width: 100%"
       >
         <el-table-column fixed prop="name" label="Merchant name" width="180" align="center" />
