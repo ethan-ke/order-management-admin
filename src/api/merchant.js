@@ -1,10 +1,13 @@
 import request from '@/utils/request'
 import qs from 'qs'
 
-export function getMerchants() {
+export function getMerchants(query) {
   return request({
     url: 'merchants',
-    method: 'get'
+    method: 'get',
+    params: {
+      limit: 100
+    }
   })
 }
 export function getMerchant(id) {
