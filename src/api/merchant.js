@@ -6,7 +6,8 @@ export function getMerchants(query) {
     url: 'merchants',
     method: 'get',
     params: {
-      limit: 100
+      page: query.page,
+      limit: query.limit
     }
   })
 }
@@ -39,3 +40,11 @@ export function updateMerchant(id, data) {
     data
   })
 }
+export function createMerchant(data) {
+  return request({
+    url: '/merchants',
+    method: 'post',
+    data
+  })
+}
+
