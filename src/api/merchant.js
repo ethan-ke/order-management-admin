@@ -6,8 +6,14 @@ export function getMerchants(query) {
     url: 'merchants',
     method: 'get',
     params: {
+      filter: {
+        username: query.username
+      },
       page: query.page,
       limit: query.limit
+    },
+    paramsSerializer: params => {
+      return qs.stringify(params, { indices: true })
     }
   })
 }

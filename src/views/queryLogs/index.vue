@@ -1,7 +1,16 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-select v-model="listQuery.merchant_id" placeholder="Merchant" clearable class="filter-item mr-1" style="width: 130px">
+      <el-select
+        v-model="listQuery.merchant_id"
+        filterable
+        remote
+        reserve-keyword
+        placeholder="Merchant"
+        :remote-method="fetchMerchants"
+        :loading="loading"
+        class="filter-item mr-1"
+      >
         <el-option v-for="(item, index) in merchants" :key="index" :label="item.username" :value="item.id" />
       </el-select>
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
@@ -10,7 +19,6 @@
     </div>
 
     <el-table
-      v-loading="listLoading"
       :data="list"
       element-loading-text="Loading"
       fit
@@ -19,27 +27,27 @@
       highlight-current-row
     >
       <el-table-column label="ID" width="150" align="center">
-        <template slot-scope="{ row }">
+        <template v-slot="{ row }">
           {{ row.id }}
         </template>
       </el-table-column>
       <el-table-column label="Customer Phone" align="center">
-        <template slot-scope="{ row }">
+        <template v-slot="{ row }">
           {{ row.phone }}
         </template>
       </el-table-column>
       <el-table-column label="Customer info" width="190" align="center">
-        <template slot-scope="{ row }">
+        <template v-slot="{ row }">
           {{ row.customer ? row.customer.name : null }}
         </template>
       </el-table-column>
       <el-table-column label="Merchant name" width="130" align="center">
-        <template slot-scope="{ row }">
+        <template v-slot="{ row }">
           {{ row.merchant.username }}
         </template>
       </el-table-column>
       <el-table-column label="Created At" width="200px" align="center">
-        <template slot-scope="{row}">
+        <template v-slot="{row}">
           <span>{{ row.created_at }}</span>
         </template>
       </el-table-column>
@@ -65,7 +73,7 @@ export default {
         room_number: undefined
       },
       list: null,
-      listLoading: true
+      loading: false
     }
   },
   created() {
@@ -74,15 +82,13 @@ export default {
   },
   methods: {
     fetchData() {
-      this.listLoading = true
       queryLogs(this.listQuery).then(response => {
         this.list = response.data.data
         this.total = response.data.total
-        this.listLoading = false
       })
     },
-    fetchMerchants() {
-      getMerchants().then(response => {
+    fetchMerchants(username) {
+      getMerchants({ username: username, limit: 5 }).then(response => {
         this.merchants = response.data.data
       })
     },
