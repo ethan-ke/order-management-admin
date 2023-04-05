@@ -4,6 +4,7 @@
       <el-input v-model="listQuery.room_number" placeholder="Room" style="width: 130px;" class="filter-item mr-1" @keyup.enter.native="handleFilter" />
       <el-input v-model="listQuery.phone" placeholder="Phone" style="width: 230px;" class="filter-item mr-1" @keyup.enter.native="handleFilter" />
       <el-select
+        ref="select"
         v-model="listQuery.merchant_id"
         filterable
         remote
@@ -12,6 +13,8 @@
         :remote-method="fetchMerchants"
         :loading="loading"
         class="filter-item mr-1"
+        @hook:mounted="cancelReadOnly"
+        @visible-change="cancelReadOnly"
       >
         <el-option v-for="(item, index) in merchants" :key="index" :label="item.username" :value="item.id" />
       </el-select>
@@ -228,6 +231,15 @@ export default {
         this.$message.success('Success')
         this.fetchData()
         this.dialogFormVisible = false
+      })
+    },
+    cancelReadOnly(onOff) {
+      this.$nextTick(() => {
+        if (!onOff) {
+          const { select } = this.$refs
+          const input = select.$el.querySelector('.el-input__inner')
+          input.removeAttribute('readonly')
+        }
       })
     }
   }
