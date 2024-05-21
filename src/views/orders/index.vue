@@ -13,6 +13,7 @@
         :remote-method="fetchMerchants"
         :loading="loading"
         class="filter-item mr-1"
+        @blur.native.capture="onblur"
         @hook:mounted="cancelReadOnly"
         @visible-change="cancelReadOnly"
       >
@@ -232,6 +233,16 @@ export default {
         this.fetchData()
         this.dialogFormVisible = false
       })
+    },
+    // 失去焦点
+    onblur() {
+      setTimeout(() => {
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { // 判断iPhone|iPad|iPod|iOS
+          this.$refs.select.blur()
+        }
+        const scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0
+        window.scrollTo(0, Math.max(scrollHeight - 1, 0))
+      }, 100)
     },
     cancelReadOnly(onOff) {
       this.$nextTick(() => {

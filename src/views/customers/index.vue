@@ -38,7 +38,7 @@
           {{ row.phone }}
         </template>
       </el-table-column>
-      <el-table-column label="Name" align="center">
+      <el-table-column label="Name" min-width="140" align="center">
         <template slot-scope="{ row }">
           {{ row.name }}
         </template>
@@ -199,7 +199,7 @@ export default {
       this.updateItemParameters.items = multipleSelection.map((item) => {
         return item.id
       })
-      bulkUpdateItem(this.updateItemParameters).then(response => {
+      bulkUpdateItem(this.updateItemParameters).then(() => {
         multipleSelection.map((item) => {
           item.status = status
           return item
