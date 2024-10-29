@@ -51,6 +51,9 @@
         <el-form-item label="Commission Ratio">
           <el-input v-model="postForm.commission_rate" />
         </el-form-item>
+        <el-form-item label="Password">
+          <el-input v-model="merchantForm.password" />
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">Cancel</el-button>
